@@ -1,0 +1,85 @@
+2021-03-08T17:23:19.103574+0200
+Traceback (most recent call last):
+
+  File "C:/Users/sasha/Desktop/parser/aaa-test-my/app.py", line 18, in <module>
+    executor.start_polling(dp, on_shutdown=on_shutdown, on_startup=on_startup)
+    |        |             |               |                       -> <function on_startup at 0x0375E850>
+    |        |             |               -> <function on_shutdown at 0x036ABDF0>
+    |        |             -> <aiogram.dispatcher.dispatcher.Dispatcher object at 0x04596E20>
+    |        -> <function start_polling at 0x04492148>
+    -> <module 'aiogram.utils.executor' from 'C:\\Users\\sasha\\PycharmProjects\\pythonProject\\venv\\lib\\site-packages\\aiogram\\u...
+
+  File "C:\Users\sasha\PycharmProjects\pythonProject\venv\lib\site-packages\aiogram\utils\executor.py", line 41, in start_polling
+    executor.start_polling(reset_webhook=reset_webhook, timeout=timeout, relax=relax, fast=fast)
+    |        |                           |                      |              |           -> True
+    |        |                           |                      |              -> 0.1
+    |        |                           |                      -> 20
+    |        |                           -> True
+    |        -> <function Executor.start_polling at 0x04492658>
+    -> <aiogram.utils.executor.Executor object at 0x033AE6A0>
+
+  File "C:\Users\sasha\PycharmProjects\pythonProject\venv\lib\site-packages\aiogram\utils\executor.py", line 312, in start_polling
+    loop.run_forever()
+    |    -> <function ProactorEventLoop.run_forever at 0x03A3AA90>
+    -> <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Users\sasha\AppData\Local\Programs\Python\Python38-32\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+
+  File "C:\Users\sasha\AppData\Local\Programs\Python\Python38-32\lib\asyncio\base_events.py", line 570, in run_forever
+    self._run_once()
+    |    -> <function BaseEventLoop._run_once at 0x039CBC88>
+    -> <ProactorEventLoop running=True closed=False debug=False>
+
+  File "C:\Users\sasha\AppData\Local\Programs\Python\Python38-32\lib\asyncio\base_events.py", line 1859, in _run_once
+    handle._run()
+    |      -> <function Handle._run at 0x03970580>
+    -> <Handle <TaskStepMethWrapper object at 0x10016448>()>
+
+  File "C:\Users\sasha\AppData\Local\Programs\Python\Python38-32\lib\asyncio\events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+    |    |            |    |           |    -> <member '_args' of 'Handle' objects>
+    |    |            |    |           -> <Handle <TaskStepMethWrapper object at 0x10016448>()>
+    |    |            |    -> <member '_callback' of 'Handle' objects>
+    |    |            -> <Handle <TaskStepMethWrapper object at 0x10016448>()>
+    |    -> <member '_context' of 'Handle' objects>
+    -> <Handle <TaskStepMethWrapper object at 0x10016448>()>
+
+  File "C:\Users\sasha\PycharmProjects\pythonProject\venv\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+                     |           |        |       -> {}
+                     |           |        -> (<aiogram.types.update.Update object at 0x0FFF9F28>,)
+                     |           -> <bound method Dispatcher.process_update of <aiogram.dispatcher.dispatcher.Dispatcher object at 0x04596E20>>
+                     -> Handler.HandlerObj(handler=<bound method Dispatcher.process_update of <aiogram.dispatcher.dispatcher.Dispatcher object at 0x0...
+
+  File "C:\Users\sasha\PycharmProjects\pythonProject\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 246, in process_update
+    return await self.message_handlers.notify(update.message)
+                 |    |                |      |      -> <aiogram.types.fields.Field object at 0x043AF4F0>
+                 |    |                |      -> <aiogram.types.update.Update object at 0x0FFF9F28>
+                 |    |                -> <function Handler.notify at 0x0440D2F8>
+                 |    -> <aiogram.dispatcher.handler.Handler object at 0x04596EC8>
+                 -> <aiogram.dispatcher.dispatcher.Dispatcher object at 0x04596E20>
+
+> File "C:\Users\sasha\PycharmProjects\pythonProject\venv\lib\site-packages\aiogram\dispatcher\handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+                     |           |        |       -> {}
+                     |           |        -> (<aiogram.types.message.Message object at 0x0FFF9D60>,)
+                     |           -> <function dwa at 0x0FFFFA00>
+                     -> Handler.HandlerObj(handler=<function dwa at 0x0FFFFA00>, spec=FullArgSpec(args=['message'], varargs=None, varkw=None, default...
+
+  File "C:\Users\sasha\Desktop\parser\aaa-test-my\handlers\handlers.py", line 32, in dwa
+    if functions.timeDifferenceMoreThanTen():
+       |         -> <function timeDifferenceMoreThanTen at 0x04C62340>
+       -> <module 'functions.functions' from 'C:\\Users\\sasha\\Desktop\\parser\\aaa-test-my\\functions\\functions.py'>
+
+  File "C:\Users\sasha\Desktop\parser\aaa-test-my\functions\functions.py", line 12, in timeDifferenceMoreThanTen
+    lastLineDate = datetime.strptime(re.findall(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}', file.read())[-1].replace('T', ' '),'%Y-%m-%d %H:%M:%S.%f')
+                   |        |        |  |                                                      |    -> <method 'read' of '_io.TextIOWrapper' objects>
+                   |        |        |  |                                                      -> <_io.TextIOWrapper name='logs/requestlogs.log' mode='r' encoding='cp1251'>
+                   |        |        |  -> <function findall at 0x037056A0>
+                   |        |        -> <module 're' from 'C:\\Users\\sasha\\AppData\\Local\\Programs\\Python\\Python38-32\\lib\\re.py'>
+                   |        -> <method 'strptime' of 'datetime.datetime' objects>
+                   -> <class 'datetime.datetime'>
+
+IndexError: list index out of range
+2021-03-08T17:23:49.943926+0200
